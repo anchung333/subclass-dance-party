@@ -1,34 +1,112 @@
+///////////////////////////////////////////////////////////////////////
+// INITIALIZE
+///////////////////////////////////////////////////////////////////////
 $(document).ready(function() {
   window.dancers = [];
+  window.dancerPos = [];
 
+  ///////////////////////////////////////////////////////////////////////
+  // BLINKY DANCER CLICK HANDLER
+  ///////////////////////////////////////////////////////////////////////
   $('.addDancerButton').on('click', function(event) {
-    /** This function sets up the click handlers for the create-dancer
-      buttons on dancefloor.html. You should only need to make one small change to it.
-     * As long as the "data-dancer-maker-function-name" attribute of a
-     * class="addDancerButton" DOM node matches one of the names of the
-     * maker functions available in the global scope, clicking that node
-     * will call the function to make the dancer.
-     */
-
-    /* dancerMakerFunctionName is a string which must match
-     * one of the dancer maker functions available in global scope.
-     * A new object of the given type will be created and added
-     * to the stage.
-     */
-    //supposed to return 'makeBlinkyDancer'
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
-    // get the maker function for the kind of dancer we're supposed to make
-    //supposed to point to makeBlinkyDancer.js
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    // make a dancer with a random position
-
+    var dancerTop = $("body").height() * Math.random();
+    var dancerLeft = $("body").width() * Math.random();
     var dancer = new dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
+      dancerTop,
+      dancerLeft,
       Math.random() * 1000
     );
     $('body').append(dancer.$node);
+    window.dancers.push(dancer);
+    window.dancerPos.push([dancerTop, dancerLeft]);
+  });
+
+
+  ///////////////////////////////////////////////////////////////////////
+  // BOUNCY DANCER CLICK HANDLER
+  ///////////////////////////////////////////////////////////////////////
+  $('.addBouncyDancerButton').on('click', function(event) {
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+    var bouncyDancerTop = $("body").height() * Math.random();
+    var bouncyDancerLeft = $("body").width() * Math.random();
+    var dancer = new dancerMakerFunction(
+      bouncyDancerTop,
+      bouncyDancerLeft,
+      Math.random() * 1000
+    );
+    $('body').append(dancer.$node);
+    window.dancerPos.push([bouncyDancerTop, bouncyDancerLeft]);
+    window.dancers.push(dancer);
+  });
+
+
+  ///////////////////////////////////////////////////////////////////////
+  // BIG DANCER CLICK HANDLER
+  ///////////////////////////////////////////////////////////////////////
+  $('.addBigDancerButton').on('click', function(event) {
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+    var bigDancerTop = $("body").height() * Math.random();
+    var bigDancerLeft = $("body").width() * Math.random();
+    var dancer = new dancerMakerFunction(
+      bigDancerTop,
+      bigDancerLeft,
+      Math.random() * 1000
+    );
+    $('body').append(dancer.$node);
+    window.dancers.push(dancer);
+    window.dancerPos.push([bigDancerTop, bigDancerLeft]);
+    console.log(window.dancerPos);
+  });
+
+  ///////////////////////////////////////////////////////////////////////
+  // MONEY DANCER CLICK HANDLER
+  ///////////////////////////////////////////////////////////////////////
+  $('.addMoneyDancerButton').on('click', function(event) {
+    var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
+    var dancerMakerFunction = window[dancerMakerFunctionName];
+    var randIndex = Math.floor(Math.random() * window.dancerPos.length);
+    if (window.dancerPos.length === 0) {
+      var dancer = new dancerMakerFunction(
+        $("body").height() * Math.random(),
+        $("body").width() * Math.random(),
+        Math.random() * 1000
+      );
+      $('body').append(dancer.$node);
+      window.dancers.push(dancer);
+    } else {
+      var copyDancer = new dancerMakerFunction(
+        window.dancerPos[randIndex][0],
+        window.dancerPos[randIndex][1] + 100,
+        Math.random() * 1000
+      );
+      window.dancerPos.splice(randIndex, 1);
+      console.log(window.dancerPos);
+      $('body').append(copyDancer.$node);
+      window.dancers.push(copyDancer);
+    }
+
+  });
+
+  ///////////////////////////////////////////////////////////////////////
+  // LINE UP CLICK HANDLER
+  ///////////////////////////////////////////////////////////////////////
+  $('.lineUpButton').on('click', function (event) {
+    var leftFix = 20;
+
+    for (let i = 0; i < window.dancers.length; i++) {
+      var newLeft = leftFix + "px";
+      window.dancers[i].top = 675;
+      var fixedStyleSettings = {
+        top: window.dancers[i].top,
+        left: newLeft
+      };
+      window.dancers[i].$node.css(fixedStyleSettings);
+      leftFix += 40;
+    }
   });
 });
-

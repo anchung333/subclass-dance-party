@@ -5,23 +5,63 @@ body{
   margin: 0px;
   background-color:#444;
   font-size: 18px;
+  background-image: url("http://getwallpapers.com/wallpaper/full/7/c/4/110984.jpg");
+  background-size: cover;
+  max-block-size: 100%;
 }
 body, a:link, a:visited, a:active{
   color: lightblue;
 }
-.title, .addDancerButton{
+.title {
+  float: left;
+  padding:5px 12px;
+  background-color: #333;
+}
+.addDancerButton, .addBouncyDancerButton, .addBigDancerButton, .lineUpButton, .addMoneyDancerButton {
+  margin: 2px;
   padding:5px 12px;
   float:right;
+  background-color: #333;
+  border: 2px solid white;
+  border-radius: 6px;
 }
 .topbar{
-  height:32px;
-  background-color: #555;
+  height:35px;
 }
 .title{
   background-color: #777;
 }
-.dancer{
-  border:10px solid red;
-  border-radius:10px;
-  position:absolute;
+.dancer {
+  background-size: cover;
+  height: 200px;
+  width: 200px;
+  border-radius: 10px;
+  position: absolute;
+}
+.blinkyDancer {
+  background-image: url("https://media1.giphy.com/media/yqMtk0TfjRa5W/source.gif");
+  background-size: cover;
+  background-position-x: -35px;
+}
+.bouncyDancer {
+  background-image: url("https://thumbs.gfycat.com/PlayfulCandidCalf-max-1mb.gif");
+  background-size: cover;
+}
+
+.bigDancer {
+  background-image: url("https://i.kym-cdn.com/photos/images/original/000/671/564/804.gif");
+  background-size: contain;
+  transform-origin: bottom;
+}
+
+.moneyDancer {
+  background-image: url("https://lkbkspro.s3.amazonaws.com/bernstein-andriulli/gl_591f13b5-4884-40ba-854c-2ce20a9620a7.gif");
+  background-size: contain;
+  border-radius: 50px;
+}
+
+.dancer:hover {
+  background-image: url("http://24.media.tumblr.com/515de21cce3036d9ef9c3fdb41c912f8/tumblr_mhr5wyNb0t1rvr9sko1_500.gif");
+  background-size: 130%;
+  background-position: center;
 }

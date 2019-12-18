@@ -1,19 +1,21 @@
+///////////////////////////////////////////////////////////////////////
+// BIG DANCER SUBCLASS
+///////////////////////////////////////////////////////////////////////
 var makeBigDancer = function (top, left, timeBetweenSteps) {
-  //var BigDancer = makeDancer(top, left, timeBetweenSteps);
   makeDancer.call(this, top, left, timeBetweenSteps);
-  this.$node.addClass('BigDancer');
+  this.$node.addClass('bigDancer');
+  this.top = top;
+  this.left = left;
 };
 
 makeBigDancer.prototype = Object.create(makeDancer.prototype);
 makeBigDancer.prototype.constructor = makeBigDancer;
 makeBigDancer.prototype.oldStep = makeDancer.prototype.step;
 makeBigDancer.prototype.step = function () {
-  // call the old version of step at the beginning of any call to this new version of step
-  //oldStep();
   this.oldStep.call(this);
-  // toggle() is a jQuery method to show/hide the <span> tag.
   // See http://api.jquery.com/category/effects/ for this and
   // other effects you can use on a jQuery-wrapped htmltag.
-  //need growing/shrink here, not toggle
-  this.$node.toggle();
+  this.$node.animate({height: "150px", width: "150px"}, 2000, "swing").animate({height: "450px", width: "450px"}, 2000, "swing");
+  // attempted to animate and shift element to give impression of central slide animation
+  // this.$node.animate({top: this.top - 100, left: this.left - 100, height: "400px", width: "400px"}, 2000).animate({top: this.top, left: this.left, height: "200px", width: "200px"}, 2000);
 };

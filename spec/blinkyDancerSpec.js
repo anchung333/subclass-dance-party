@@ -13,9 +13,9 @@ describe('blinkyDancer', function() {
   });
 
   it('should have a step function that makes its node blink', function() {
-    sinon.spy(blinkyDancer.$node, 'toggle');
+    sinon.spy(blinkyDancer.$node, 'fadeToggle');
     blinkyDancer.step();
-    expect(blinkyDancer.$node.toggle.called).to.be.true;
+    expect(blinkyDancer.$node.fadeToggle.called).to.be.true;
   });
 
   describe('dance', function() {
@@ -33,24 +33,24 @@ describe('blinkyDancer', function() {
   });
 });
 
-describe('flippyDancer', function() {
+describe('bouncyDancer', function() {
 
-  var flippyDancer, clock;
+  var bouncyDancer, clock;
   var timeBetweenSteps = 80;
 
   beforeEach(function() {
     clock = sinon.useFakeTimers();
-    flippyDancer = new makeFlippyDancer(20, 40, timeBetweenSteps);
+    bouncyDancer = new makeBouncyDancer(20, 40, timeBetweenSteps);
   });
 
   it('should have a jQuery $node object', function() {
-    expect(blinkyDancer.$node).to.be.an.instanceof(jQuery);
+    expect(bouncyDancer.$node).to.be.an.instanceof(jQuery);
   });
 
-  it ('should have a step function that makes its node do a flip', function() {
-    sinon.spy(blinkyDancer.$node, 'flip');
-    flippyDancer.step();
-    expect(flippyDancer.$node.flip.called).to.be.true;
+  it ('should have a step function that makes its node bounce', function() {
+    sinon.spy(bouncyDancer.$node, 'animate');
+    bouncyDancer.step();
+    expect(bouncyDancer.$node.animate.called).to.be.true;
   });
 });
 
@@ -65,12 +65,29 @@ describe('bigDancer', function() {
   });
 
   it('should have a jQuery $node object', function() {
-    expect(blinkyDancer.$node).to.be.an.instanceof(jQuery);
+    expect(bigDancer.$node).to.be.an.instanceof(jQuery);
   });
 
   it ('should have a step function that makes its node grow and shrink', function() {
-    sinon.spy(blinkyDancer.$node, 'big');
-    flippyDancer.step();
-    expect(flippyDancer.$node.big.called).to.be.true;
+    sinon.spy(bigDancer.$node, 'animate');
+    bigDancer.step();
+    expect(bigDancer.$node.animate.called).to.be.true;
   });
+});
+
+describe('moneyDancer', function() {
+
+  var moneyDancer, clock;
+  var timeBetweenSteps = 80;
+
+  beforeEach(function() {
+    clock = sinon.useFakeTimers();
+    moneyDancer = new makeMoneyDancer(20, 40, timeBetweenSteps);
+  });
+
+  it('should have a jQuery $node object', function() {
+    expect(moneyDancer.$node).to.be.an.instanceof(jQuery);
+  });
+
+
 });
