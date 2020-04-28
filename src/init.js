@@ -12,8 +12,8 @@ $(document).ready(function() {
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
-    var dancerTop = $("body").height() * Math.random();
-    var dancerLeft = $("body").width() * Math.random();
+    var dancerTop = $("body").height() * 0.8 * Math.random();
+    var dancerLeft = $("body").width() * 0.8 * Math.random();
     var dancer = new dancerMakerFunction(
       dancerTop,
       dancerLeft,
@@ -31,8 +31,8 @@ $(document).ready(function() {
   $('.addBouncyDancerButton').on('click', function(event) {
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
     var dancerMakerFunction = window[dancerMakerFunctionName];
-    var bouncyDancerTop = $("body").height() * Math.random();
-    var bouncyDancerLeft = $("body").width() * Math.random();
+    var bouncyDancerTop = $("body").height() * 0.8 * Math.random();
+    var bouncyDancerLeft = $("body").width() * 0.8 * Math.random();
     var dancer = new dancerMakerFunction(
       bouncyDancerTop,
       bouncyDancerLeft,
@@ -50,8 +50,8 @@ $(document).ready(function() {
   $('.addBigDancerButton').on('click', function(event) {
     var dancerMakerFunctionName = $(this).data('dancer-maker-function-name');
     var dancerMakerFunction = window[dancerMakerFunctionName];
-    var bigDancerTop = $("body").height() * Math.random();
-    var bigDancerLeft = $("body").width() * Math.random();
+    var bigDancerTop = $("body").height() * 0.7 * Math.random();
+    var bigDancerLeft = $("body").width() * 0.7 * Math.random();
     var dancer = new dancerMakerFunction(
       bigDancerTop,
       bigDancerLeft,
@@ -100,7 +100,7 @@ $(document).ready(function() {
 
     for (let i = 0; i < window.dancers.length; i++) {
       var newLeft = leftFix + "px";
-      window.dancers[i].top = 675;
+      window.dancers[i].top = 400;
       var fixedStyleSettings = {
         top: window.dancers[i].top,
         left: newLeft
